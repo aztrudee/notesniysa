@@ -27,7 +27,7 @@
 
       <div class="mb-3">
         <label>Confirm Password</label>
-        <input type="password" name="confirmPassword" class="form-control" required>
+        <input type="password" name="password_confirmation" class="form-control" required>
       </div>
 
       <div class="mb-3">
@@ -79,6 +79,16 @@
        style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
     <div class="d-flex">
       <div class="toast-body fw-semibold">❌ {{ $errors->first('email') }}</div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+  @endif
+
+  @if($errors->has('password'))
+  <div id="toastPassword" class="toast align-items-center border-0 show" role="alert"
+       style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">❌ {{ $errors->first('password') }}</div>
       <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
     </div>
   </div>

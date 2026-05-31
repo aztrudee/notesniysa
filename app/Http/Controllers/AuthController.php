@@ -23,7 +23,9 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'gender' => 'required|string',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'password.confirmed' => 'Passwords do not match!',
         ]);
 
         // create the user
