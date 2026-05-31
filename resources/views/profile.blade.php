@@ -58,19 +58,6 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
 
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
-                    @if($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
-                            <ul class="mb-0">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
-
                     <div class="card custom-modal border-0 p-4">
 
                         <h3 class="text-center fw-bold mb-4">Edit Profile</h3>
@@ -174,6 +161,28 @@
 
 @endsection
 
+<!-- TOASTS -->
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+    @if(session('success'))
+    <div class="toast align-items-center border-0 show" role="alert"
+         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
+        <div class="d-flex">
+            <div class="toast-body fw-semibold">✅ {{ session('success') }}</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
+    @if($errors->any())
+    <div class="toast align-items-center border-0 show" role="alert"
+         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+        <div class="d-flex">
+            <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
+</div>
+
 @push('styles')
 <style>
 .card {
@@ -203,16 +212,15 @@
 @push('scripts')
 <script>
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('show');
+  document.getElementById('sidebar').classList.toggle('show');
 }
 
-function editProfile() {
-  alert('Edit profile functionality coming soon!');
-}
-
-function changePassword() {
-  alert('Change password functionality coming soon!');
-}
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toast.show').forEach(function (el) {
+        setTimeout(function () {
+            bootstrap.Toast.getOrCreateInstance(el).hide();
+        }, 3000);
+    });
+});
 </script>
 @endpush
