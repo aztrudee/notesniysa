@@ -50,21 +50,21 @@
 
     <main class="main-wrapper">
         <div class="toast-container" style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
-            <div id="toastAdd" class="toast align-items-center border-0 show" role="alert"
+            <div id="toastAdd" class="toast align-items-center border-0" role="alert"
                  style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
                     <div class="toast-body fw-semibold">✅ Note added successfully!</div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
-            <div id="toastEdit" class="toast align-items-center border-0 show" role="alert"
+            <div id="toastEdit" class="toast align-items-center border-0" role="alert"
                  style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
                     <div class="toast-body fw-semibold">✏️ Note updated successfully!</div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
-            <div id="toastDelete" class="toast align-items-center border-0 show" role="alert"
+            <div id="toastDelete" class="toast align-items-center border-0" role="alert"
                  style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
                     <div class="toast-body fw-semibold">🗑️ Note deleted successfully!</div>
@@ -290,16 +290,12 @@ function deleteNote() {
 }
 
 function showToast(type) {
-    new bootstrap.Toast(document.getElementById('toast' + type.charAt(0).toUpperCase() + type.slice(1))).show();
+    const toastElement = document.getElementById('toast' + type.charAt(0).toUpperCase() + type.slice(1));
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+    setTimeout(function () {
+        toast.hide();
+    }, 3000);
 }
-
-// Auto-dismiss all visible toasts after 3 seconds
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.toast.show').forEach(function (el) {
-        setTimeout(function () {
-            bootstrap.Toast.getOrCreateInstance(el).hide();
-        }, 3000);
-    });
-});
 </script>
 @endpush
