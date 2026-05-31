@@ -7,6 +7,24 @@
 
     <h3>Create Account</h3>
 
+    @if(session('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+    @endif
+
+    @if($errors->has('email'))
+      <div class="alert alert-danger" role="alert">
+        {{ $errors->first('email') }}
+      </div>
+    @endif
+
+    @if($errors->any() && !$errors->has('email'))
+      <div class="alert alert-danger" role="alert">
+        {{ $errors->first() }}
+      </div>
+    @endif
+
     <form action="/register" method="POST">
       @csrf
 
@@ -135,10 +153,19 @@ h3 {
 }
 
 .alert {
-  background: #ffe5e5;
   border: none;
-  color: #c94b4b;
   border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.alert-danger {
+  background: #ffe5e5;
+  color: #c94b4b;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #276138;
 }
 
 .small-link {
