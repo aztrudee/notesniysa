@@ -139,10 +139,9 @@ class AuthController extends Controller
             'gender' => 'required|string|in:male,female',
             'current_password' => 'nullable|string',
             'new_password' => 'nullable|string|min:6|confirmed',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Check current password if changing password
         if ($request->filled('new_password')) {
             if (!Hash::check($request->current_password, $user->password)) {
                 return back()->withErrors(['current_password' => 'Current password is incorrect.']);
@@ -150,10 +149,11 @@ class AuthController extends Controller
             $user->password = Hash::make($validated['new_password']);
         }
 
-        // Handle profile image upload
         if ($request->hasFile('profile_image')) {
-            $imagePath = $request->file('profile_image')->store('profile_images', 'public');
-            $user->profile_photo_path = $imagePath;
+            $file = $request->file('profile_image');
+            $mime = $file->getMimeType();
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $user->profile_picture_base64 = 'data:' . $mime . ';base64,' . $base64;
         }
 
         $user->name = $validated['name'];
