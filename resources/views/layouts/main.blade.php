@@ -52,6 +52,12 @@
         }
         .sidebar a i { margin-right: 10px; }
         .sidebar a:hover { background: #9fb997e5; color: black; }
+        .sidebar { overflow-y: auto; }
+        .sidebar a {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
         /* TOPBAR */
         .topbar {
@@ -72,8 +78,15 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            min-width: 0;
+            overflow: hidden;
         }
-        .breadcrumb-nav a { color: #6c757d; text-decoration: none; }
+        .breadcrumb-nav a,
+        .breadcrumb-nav span {
+            color: #6c757d;
+            text-decoration: none;
+            white-space: nowrap;
+        }
         .breadcrumb-nav .sep { color: #ccc; }
         .toggle-btn {
             font-size: 24px;
@@ -137,6 +150,11 @@
         /* TABLE */
         .table { border-radius: 10px; overflow: hidden; }
         .table thead { background: #c8eccc; }
+        .table th,
+        .table td {
+            white-space: normal;
+            word-break: break-word;
+        }
 
         /* BUTTONS */
         .btn-primary { background: #497151 !important; border: none !important; font-weight: 600; }
@@ -171,6 +189,8 @@
             .sidebar { transform: translateX(-100%); z-index: 1050; }
             .sidebar.show { transform: translateX(0); }
             .topbar { left: 0; right: 0; padding: 0 15px; }
+            .topbar .breadcrumb-nav { width: 100%; }
+            .topbar .text-end { min-width: 0; }
             .main { margin-left: 0; }
             .toggle-btn { display: block; }
             .chart-container { height: 260px; }
@@ -182,6 +202,8 @@
         /* RESPONSIVE <= 768px */
         @media (max-width: 768px) {
             .topbar { height: auto; flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
+            .topbar .breadcrumb-nav { width: 100%; }
+            .topbar .text-end { width: 100%; text-align: left; }
             .content-wrapper, .main-wrapper { padding: 90px 15px 20px 15px; }
             .sticky-note { padding: 20px; box-shadow: 7px 5px 0 #497151; }
             .sticky-note::before { border-width: 0 0 25px 25px; }
@@ -200,6 +222,7 @@
             .table { font-size: 0.85rem; }
             .btn { font-size: 0.85rem; padding: 0.35rem 0.75rem; }
             .table-responsive { border: 0; }
+            .w-100-mobile { width: 100% !important; }
         }
     </style>
     @stack('styles')

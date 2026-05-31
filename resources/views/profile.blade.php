@@ -78,7 +78,7 @@
                                 @endif
 
                                 <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
-                                    <input type="file" class="form-control custom-input" name="profile_image" style="max-width:250px;" accept="image/*">
+                                    <input type="file" class="form-control custom-input w-100-mobile" name="profile_image" style="max-width:250px; width:100%;" accept="image/*">
                                 </div>
                                 <small class="text-muted">Upload a new profile image (optional)</small>
                             </div>
