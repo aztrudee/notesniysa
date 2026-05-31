@@ -82,7 +82,7 @@
                     <table class="table table-hover align-middle">
                         <thead>
                             <tr>
-                                <th>ID</th><th>User</th><th>Title</th>
+                                <th>ID</th><th>Title</th>
                                 <th>Content</th><th>Date Created</th>
                                 <th class="text-end">Actions</th>
                             </tr>
@@ -92,7 +92,6 @@
                                 @foreach($notes as $note)
                                 <tr>
                                     <td>{{ $note->id }}</td>
-                                    <td class="fw-semibold">{{ $note->user->name }}</td>
                                     <td>{{ $note->title }}</td>
                                     <td>{{ substr($note->content, 0, 50) }}{{ strlen($note->content) > 50 ? '...' : '' }}</td>
                                     <td>{{ $note->created_at->format('Y-m-d') }}</td>
@@ -115,7 +114,7 @@
                                 </tr>
                                 @endforeach
                             @else
-                                <tr><td colspan="6" class="text-center text-muted py-4">No notes yet. Create one to get started!</td></tr>
+                                <tr><td colspan="5" class="text-center text-muted py-4">No notes yet. Create one to get started!</td></tr>
                             @endif
                         </tbody>
                     </table>
