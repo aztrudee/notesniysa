@@ -216,9 +216,6 @@
   .container { padding-left: 10px; padding-right: 10px; }
   hr { margin: 1.5rem 0; }
   .mb-4 { margin-bottom: 1.5rem !important; }
-  .breadcrumb-nav { display: none !important; }
-  .text-end { display: none !important; }
-  .topbar { justify-content: flex-end; }
 }
 
 @media (max-width: 576px) {
@@ -228,9 +225,8 @@
   .form-control, .form-select, .custom-input { font-size: 0.9rem; padding: 0.5rem; }
   input[type="file"] { font-size: 0.85rem; }
   .text-center { text-align: center; }
-  .text-end { text-align: center !important; display: none !important; }
+  .text-end { text-align: center !important; }
   .fw-semibold { font-weight: 600; }
-  .breadcrumb-nav { display: none !important; }
 }
 </style>
 @endpush

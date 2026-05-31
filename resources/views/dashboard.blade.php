@@ -178,7 +178,6 @@ new Chart(document.getElementById('noteChart'), {
 }
 
 @media (max-width: 576px) {
-  .content-wrapper, .main-wrapper { padding: 90px 10px 15px 10px !important; }
   .card { padding: 1rem !important; box-shadow: 5px 4px 0 #497151 !important; }
   .card h5 { font-size: 0.85rem; }
   .display-6 { font-size: 1.5rem !important; }

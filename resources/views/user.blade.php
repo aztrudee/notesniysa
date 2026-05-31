@@ -263,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 @media (max-width: 576px) {
-  .main-wrapper { padding: 90px 10px 15px 10px !important; }
   .sticky-note { padding: 1rem; border-radius: 12px; box-shadow: 5px 4px 0 #497151; }
   .sticky-note h4 { font-size: 1rem; }
   .btn { font-size: 0.8rem; padding: 0.4rem 0.75rem; }

@@ -201,9 +201,11 @@
 
         /* RESPONSIVE <= 768px */
         @media (max-width: 768px) {
-            .topbar { height: auto; flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
-            .topbar .breadcrumb-nav { width: 100%; }
-            .topbar .text-end { width: 100%; text-align: left; }
+            .topbar { height: auto; flex-wrap: wrap; gap: 8px; padding: 10px 15px; justify-content: space-between; }
+            .topbar .d-flex:first-child { width: auto; }
+            .topbar .breadcrumb-nav { display: none !important; }
+            .topbar .text-end { display: none !important; }
+            .topbar .d-flex:last-child { width: auto; }
             .content-wrapper, .main-wrapper { padding: 90px 15px 20px 15px; }
             .sticky-note { padding: 20px; box-shadow: 7px 5px 0 #497151; }
             .sticky-note::before { border-width: 0 0 25px 25px; }
