@@ -267,8 +267,8 @@ document.addEventListener('DOMContentLoaded', function () {
   .sticky-note h4 { font-size: 1rem; }
   .btn { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
   .btn i { margin-right: 0.25rem; }
-  .table { font-size: 0.75rem; }
-  .table th, .table td { padding: 0.5rem 0.25rem; }
+  .table { font-size: 0.75rem; min-width: 650px; }
+  .table th, .table td { padding: 0.5rem 0.25rem; white-space: nowrap; }
   .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .d-flex.justify-content-between { display: flex !important; justify-content: space-between; flex-wrap: wrap; }
   .text-center { text-align: center; }
