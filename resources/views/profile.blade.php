@@ -162,10 +162,10 @@
 @endsection
 
 <!-- TOASTS -->
-<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:90vw;">
     @if(session('success'))
     <div class="toast align-items-center border-0 show" role="alert"
-         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;max-width:90vw;">
+         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
         <div class="d-flex">
             <div class="toast-body fw-semibold">✅ {{ session('success') }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
@@ -174,7 +174,7 @@
     @endif
     @if($errors->any())
     <div class="toast align-items-center border-0 show" role="alert"
-         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;max-width:90vw;">
+         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
         <div class="d-flex">
             <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>

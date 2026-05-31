@@ -184,7 +184,7 @@
 @endsection
 
 <!-- TOAST CONTAINER -->
-<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:90vw;">
     @if(session('toast_success'))
     <div id="toastMain" class="toast align-items-center border-0 show"
          style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
@@ -246,4 +246,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+@endpush
+
+@push('styles')
+<style>
+/* RESPONSIVE FOR USER PAGE */
+@media (max-width: 768px) {
+  .sticky-note { padding: 1.5rem; box-shadow: 7px 5px 0 #497151; }
+  .sticky-note h4 { font-size: 1.25rem; }
+  .d-flex.justify-content-between { flex-wrap: wrap; gap: 1rem; }
+  .btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
+  .table { font-size: 0.9rem; }
+  .table thead { background: #c8eccc; }
+  .table th, .table td { padding: 0.75rem 0.5rem; }
+  .table-responsive { border: 0; }
+}
+
+@media (max-width: 576px) {
+  .main-wrapper { padding: 90px 10px 15px 10px !important; }
+  .sticky-note { padding: 1rem; border-radius: 12px; box-shadow: 5px 4px 0 #497151; }
+  .sticky-note h4 { font-size: 1rem; }
+  .btn { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+  .btn i { margin-right: 0.25rem; }
+  .table { font-size: 0.75rem; }
+  .table th, .table td { padding: 0.5rem 0.25rem; }
+  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .d-flex.justify-content-between { display: flex !important; justify-content: space-between; flex-wrap: wrap; }
+  .text-center { text-align: center; }
+}
+</style>
 @endpush

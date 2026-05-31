@@ -163,3 +163,29 @@ new Chart(document.getElementById('noteChart'), {
 });
 </script>
 @endpush
+
+@push('styles')
+<style>
+/* RESPONSIVE FOR DASHBOARD */
+@media (max-width: 768px) {
+  .col-md-6, .col-lg-6 { max-width: 100%; flex: 0 0 100%; }
+  .card { padding: 1.5rem !important; }
+  .card h5 { font-size: 0.95rem; }
+  .display-6 { font-size: 2rem !important; }
+  .row.g-4 { gap: 1rem !important; }
+  .chart-container { height: 250px !important; }
+  .mb-4 { margin-bottom: 1rem !important; }
+}
+
+@media (max-width: 576px) {
+  .content-wrapper, .main-wrapper { padding: 90px 10px 15px 10px !important; }
+  .card { padding: 1rem !important; box-shadow: 5px 4px 0 #497151 !important; }
+  .card h5 { font-size: 0.85rem; }
+  .display-6 { font-size: 1.5rem !important; }
+  .chart-container { height: 200px !important; }
+  .badge { font-size: 0.75rem; }
+  .d-flex { flex-wrap: wrap; }
+  .mb-3 { margin-bottom: 0.75rem !important; }
+}
+</style>
+@endpush

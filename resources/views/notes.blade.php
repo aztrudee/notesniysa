@@ -49,7 +49,7 @@
     </header>
 
     <main class="main-wrapper">
-        <div class="toast-container" style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+        <div class="toast-container" style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:90vw;">
             <div id="toastAdd" class="toast align-items-center border-0" role="alert"
                  style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
@@ -298,4 +298,37 @@ function showToast(type) {
     }, 3000);
 }
 </script>
+@endpush
+
+@push('styles')
+<style>
+/* RESPONSIVE FOR NOTES PAGE */
+@media (max-width: 768px) {
+  .sticky-note { padding: 1.5rem; box-shadow: 7px 5px 0 #497151; }
+  .sticky-note h4 { font-size: 1.25rem; }
+  .d-flex.justify-content-between { flex-wrap: wrap; gap: 1rem; }
+  .btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
+  .table { font-size: 0.9rem; }
+  .table th, .table td { padding: 0.75rem 0.5rem; }
+  .table-responsive { border: 0; overflow-x: auto; }
+  .toast-container { right: 10px !important; top: 70px !important; }
+  .toast { min-width: auto !important; max-width: 90vw !important; }
+}
+
+@media (max-width: 576px) {
+  .main-wrapper { padding: 90px 10px 15px 10px !important; }
+  .sticky-note { padding: 1rem; border-radius: 12px; box-shadow: 5px 4px 0 #497151; }
+  .sticky-note h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+  .btn { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+  .btn i { margin-right: 0.25rem; }
+  .table { font-size: 0.75rem; }
+  .table th, .table td { padding: 0.5rem 0.25rem; }
+  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table thead { background: #c8eccc; }
+  .text-end { text-align: center !important; }
+  .toast-container { right: 5px !important; gap: 5px !important; }
+  .toast { min-width: 90vw !important; padding: 0.75rem !important; }
+  .toast-body { font-size: 0.85rem; }
+}
+</style>
 @endpush
