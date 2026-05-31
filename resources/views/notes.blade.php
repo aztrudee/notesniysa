@@ -53,21 +53,21 @@
             <div id="toastAdd" class="toast align-items-center border-0" role="alert"
                  style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
-                    <div class="toast-body fw-semibold">✅ Note added successfully!</div>
+                    <div class="toast-body fw-semibold">Note added successfully!</div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
             <div id="toastEdit" class="toast align-items-center border-0" role="alert"
                  style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
-                    <div class="toast-body fw-semibold">✏️ Note updated successfully!</div>
+                    <div class="toast-body fw-semibold">Note updated successfully!</div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
             <div id="toastDelete" class="toast align-items-center border-0" role="alert"
                  style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
                 <div class="d-flex">
-                    <div class="toast-body fw-semibold">🗑️ Note deleted successfully!</div>
+                    <div class="toast-body fw-semibold">Note deleted successfully!</div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>

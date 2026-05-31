@@ -167,7 +167,7 @@
     <div class="toast align-items-center border-0 show" role="alert"
          style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
         <div class="d-flex">
-            <div class="toast-body fw-semibold">✅ {{ session('success') }}</div>
+            <div class="toast-body fw-semibold">{{ session('success') }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
@@ -176,7 +176,7 @@
     <div class="toast align-items-center border-0 show" role="alert"
          style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
         <div class="d-flex">
-            <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
+            <div class="toast-body fw-semibold">{{ $errors->first() }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
