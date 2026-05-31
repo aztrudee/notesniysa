@@ -56,7 +56,7 @@
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
-            <div id="toastEdit" class="toast align-items-center text-bg-primary border-0" role="alert">
+            <div id="toastEdit" class="toast align-items-center text-bg-success border-0" role="alert">
                 <div class="d-flex">
                     <div class="toast-body">✏️ Note updated successfully!</div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
