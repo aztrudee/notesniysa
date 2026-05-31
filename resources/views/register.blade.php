@@ -7,24 +7,6 @@
 
     <h3>Create Account</h3>
 
-    @if(session('success'))
-      <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-      </div>
-    @endif
-
-    @if($errors->has('email'))
-      <div class="alert alert-danger" role="alert">
-        {{ $errors->first('email') }}
-      </div>
-    @endif
-
-    @if($errors->any() && !$errors->has('email'))
-      <div class="alert alert-danger" role="alert">
-        {{ $errors->first() }}
-      </div>
-    @endif
-
     <form action="/register" method="POST">
       @csrf
 
@@ -77,6 +59,41 @@
     <img src="{{ asset('ASSETS/frog.png') }}" class="frog" alt="frog">
 
   </div>
+</div>
+
+<!-- TOASTS -->
+<div style="position:fixed;top:20px;right:20px;z-index:9999;">
+
+  @if(session('success'))
+  <div id="toastSuccess" class="toast align-items-center border-0 show" role="alert"
+       style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">✅ {{ session('success') }}</div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+  @endif
+
+  @if($errors->has('email'))
+  <div id="toastEmail" class="toast align-items-center border-0 show" role="alert"
+       style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">❌ {{ $errors->first('email') }}</div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+  @endif
+
+  @if($errors->any() && !$errors->has('email'))
+  <div id="toastError" class="toast align-items-center border-0 show" role="alert"
+       style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+  @endif
+
 </div>
 
 @endsection
@@ -150,22 +167,6 @@ h3 {
 .btn-custom:hover {
   background: #76c787 !important;
   color: black !important;
-}
-
-.alert {
-  border: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
-}
-
-.alert-danger {
-  background: #ffe5e5;
-  color: #c94b4b;
-}
-
-.alert-success {
-  background: #d4edda;
-  color: #276138;
 }
 
 .small-link {
