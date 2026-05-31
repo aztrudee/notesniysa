@@ -76,7 +76,7 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         $totalUsers = User::count();
-        $totalNotes = Note::count();
+        $totalNotes = Note::where('user_id', $user->id)->count();
 
         $period = collect(range(5, 0, -1))->map(function ($offset) {
             return now()->subMonths($offset);
@@ -92,6 +92,7 @@ class AuthController extends Controller
             ->toArray();
 
         $notesByMonth = Note::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, COUNT(*) as total")
+            ->where('user_id', $user->id)
             ->whereBetween('created_at', [now()->subMonths(5)->startOfMonth(), now()->endOfMonth()])
             ->groupBy('month')
             ->pluck('total', 'month')
