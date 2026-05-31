@@ -160,6 +160,9 @@ class AuthController extends Controller
         $user->gender = $validated['gender'];
         $user->save();
 
+        // Refresh the auth session so the updated user is reflected immediately
+        auth()->setUser($user->fresh());
+
         return back()->with('success', 'Profile updated successfully!');
     }
 

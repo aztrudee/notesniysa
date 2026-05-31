@@ -39,8 +39,13 @@
                 <div class="small text-muted">{{ $user->email }}</div>
             </div>
             <a href="/profile" class="d-flex align-items-center text-decoration-none">
-                <img src="{{ auth()->user() && auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('ASSETS/blank-pfp.png') }}" alt="Profile" 
-                     style="width:36px; height:36px; border-radius:50%; object-fit:cover;">
+                @if(auth()->user()->profile_picture_base64)
+                    <img src="{{ auth()->user()->profile_picture_base64 }}" alt="Profile"
+                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                @else
+                    <img src="{{ asset('ASSETS/blank-pfp.png') }}" alt="Profile"
+                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                @endif
             </a>
         </div>
     </header>
@@ -53,6 +58,19 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
 
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                            <ul class="mb-0">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
                     <div class="card custom-modal border-0 p-4">
 
                         <h3 class="text-center fw-bold mb-4">Edit Profile</h3>
@@ -61,11 +79,16 @@
                         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <!-- PROFILE IMAGE -->
                             <div class="text-center mb-4">
-                                <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('ASSETS/blank-pfp.png') }}" 
-                                     class="rounded-circle mb-3"
-                                     style="width:100px; height:100px; object-fit:cover;">
+                                @if($user->profile_picture_base64)
+                                    <img src="{{ $user->profile_picture_base64 }}"
+                                         class="rounded-circle mb-3"
+                                         style="width:100px;height:100px;object-fit:cover;">
+                                @else
+                                    <img src="{{ asset('ASSETS/blank-pfp.png') }}"
+                                         class="rounded-circle mb-3"
+                                         style="width:100px;height:100px;object-fit:cover;">
+                                @endif
 
                                 <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
                                     <input type="file" class="form-control custom-input" name="profile_image" style="max-width:250px;" accept="image/*">
@@ -152,78 +175,28 @@
 @endsection
 
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <style>
-.main-wrapper {
-  padding: 30px;
-}
-
 .card {
   background: #dff5e1 !important;
   border-radius: 16px !important;
   box-shadow: 10px 8px 0 #497151 !important;
 }
-
 .form-select.custom-input {
   border-radius: 12px;
   border: 1px solid #a9c7b1;
   padding: 10px;
   transition: 0.2s;
 }
-
 .form-select.custom-input:focus {
   border-color: #497151;
   box-shadow: 0 0 0 2px rgba(73,113,81,0.2);
 }
-
 .btn-success {
   background-color: #497151 !important;
   border: none;
   font-weight: 600;
 }
-
-.btn-success:hover {
-  background-color: #76c787 !important;
-}
-
-@media (max-width: 768px) {
-  .main-wrapper {
-    padding: 15px;
-  }
-
-  .card {
-    padding: 20px !important;
-    box-shadow: 8px 6px 0 #497151 !important;
-  }
-
-  .row.g-3 {
-    row-gap: 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .main-wrapper {
-    padding: 10px;
-  }
-
-  .card {
-    padding: 15px !important;
-    box-shadow: 5px 4px 0 #497151 !important;
-  }
-
-  h3 {
-    font-size: 1.5rem !important;
-  }
-
-  .col-md-6 {
-    flex: 0 0 100% !important;
-  }
-
-  .form-control,
-  .form-select {
-    font-size: 0.9rem;
-  }
-}
+.btn-success:hover { background-color: #76c787 !important; }
 </style>
 @endpush
 

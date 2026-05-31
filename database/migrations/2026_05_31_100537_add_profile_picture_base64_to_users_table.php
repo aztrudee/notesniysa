@@ -8,9 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->longText('profile_picture_base64')->nullable()->after('profile_photo_path');
-        });
+        if (!Schema::hasColumn('users', 'profile_picture_base64')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->longText('profile_picture_base64')->nullable()->after('profile_photo_path');
+            });
+        }
     }
 
     public function down(): void
