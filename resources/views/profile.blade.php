@@ -105,8 +105,8 @@
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Gender</label>
                                     <select class="form-select custom-input" name="gender">
-                                        <option value="male" {{ $user->gender === 'Male' ? 'selected' : '' }}>Male</option>
-                                        <option value="female" {{ $user->gender === 'Female' ? 'selected' : '' }}>Female</option>
+                                        <option value="Male" {{ $user->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ $user->gender === 'Female' ? 'selected' : '' }}>Female</option>
                                     </select>  
                                 </div>
 

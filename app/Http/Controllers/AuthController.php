@@ -137,7 +137,7 @@ class AuthController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'gender' => 'required|string|in:male,female',
+            'gender' => 'required|string|in:Male,Female',
             'current_password' => 'nullable|string',
             'new_password' => 'nullable|string|min:6|confirmed',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
