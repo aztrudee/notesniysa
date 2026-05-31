@@ -105,8 +105,8 @@
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Gender</label>
                                     <select class="form-select custom-input" name="gender">
-                                        <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
-                                        <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</option>
+                                        <option value="male" {{ $user->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="female" {{ $user->gender === 'Female' ? 'selected' : '' }}>Female</option>
                                     </select>  
                                 </div>
 
@@ -176,7 +176,7 @@
     <div class="toast align-items-center border-0 show" role="alert"
          style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
         <div class="d-flex">
-            <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
+            <div class="toast-body fw-semibold"> {{ $errors->first() }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
