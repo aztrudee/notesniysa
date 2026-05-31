@@ -165,7 +165,7 @@
 <div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
     @if(session('success'))
     <div class="toast align-items-center border-0 show" role="alert"
-         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
+         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;max-width:90vw;">
         <div class="d-flex">
             <div class="toast-body fw-semibold">✅ {{ session('success') }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
@@ -174,9 +174,9 @@
     @endif
     @if($errors->any())
     <div class="toast align-items-center border-0 show" role="alert"
-         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;max-width:90vw;">
         <div class="d-flex">
-            <div class="toast-body fw-semibold"> {{ $errors->first() }}</div>
+            <div class="toast-body fw-semibold">❌ {{ $errors->first() }}</div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
@@ -206,6 +206,28 @@
   font-weight: 600;
 }
 .btn-success:hover { background-color: #76c787 !important; }
+
+/* RESPONSIVE FOR MOBILE */
+@media (max-width: 768px) {
+  .col-md-8 { max-width: 100%; flex: 0 0 100%; }
+  .col-md-6 { max-width: 100%; flex: 0 0 100%; }
+  .card { padding: 1.5rem !important; }
+  .card h3 { font-size: 1.5rem; }
+  .container { padding-left: 10px; padding-right: 10px; }
+  hr { margin: 1.5rem 0; }
+  .mb-4 { margin-bottom: 1.5rem !important; }
+}
+
+@media (max-width: 576px) {
+  .card { padding: 1rem !important; box-shadow: 5px 4px 0 #497151 !important; }
+  .card h3 { font-size: 1.25rem; }
+  .form-label { font-size: 0.9rem; }
+  .form-control, .form-select, .custom-input { font-size: 0.9rem; padding: 0.5rem; }
+  input[type="file"] { font-size: 0.85rem; }
+  .text-center { text-align: center; }
+  .text-end { text-align: center !important; }
+  .fw-semibold { font-weight: 600; }
+}
 </style>
 @endpush
 
