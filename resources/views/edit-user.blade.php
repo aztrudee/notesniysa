@@ -42,6 +42,21 @@
     </header>
 
     <main class="main-wrapper">
+        <div class="toast-container">
+            <div id="toastUpdate" class="toast align-items-center text-bg-success border-0" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">✅ User updated successfully!</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+            <div id="toastError" class="toast align-items-center text-bg-danger border-0" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">❌ Error updating user!</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        </div>
+
         <div class="sticky-note">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="mb-0 fw-bold">Edit User</h4>
