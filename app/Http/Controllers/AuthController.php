@@ -191,14 +191,14 @@ class AuthController extends Controller
         ]);
 
         $user->update($validated);
-        return back()->with('success', 'User updated successfully!');
+        return back()->with('toast_success', 'User updated successfully!');
     }
 
     public function deleteUser($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return back()->with('success', 'User deleted successfully!');
+        return back()->with('toast_success', 'User deleted successfully!');
     }
 
     public function storeUser(Request $request)
@@ -217,7 +217,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('success', 'User added successfully!');
+        return back()->with('toast_success', 'User added successfully!');
     }
 
     public function storeNote(Request $request)

@@ -183,6 +183,29 @@
 
 @endsection
 
+<!-- TOAST CONTAINER -->
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+    @if(session('toast_success'))
+    <div id="toastMain" class="toast align-items-center border-0 show"
+         style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
+        <div class="d-flex">
+            <div class="toast-body fw-semibold">✅ {{ session('toast_success') }}</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
+
+    @if(session('toast_error'))
+    <div id="toastError" class="toast align-items-center border-0 show"
+         style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
+        <div class="d-flex">
+            <div class="toast-body fw-semibold">❌ {{ session('toast_error') }}</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
+</div>
+
 @push('scripts')
 <script>
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('show'); }
@@ -213,5 +236,14 @@ function submitAddForm() {
     if (password !== confirm) { alert('Passwords do not match'); return; }
     document.getElementById('addForm').submit();
 }
+
+// Auto-dismiss all visible toasts after 3 seconds
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toast.show').forEach(function (el) {
+        setTimeout(function () {
+            bootstrap.Toast.getOrCreateInstance(el).hide();
+        }, 3000);
+    });
+});
 </script>
 @endpush

@@ -187,3 +187,15 @@ h3 {
 }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toast.show').forEach(function (el) {
+        setTimeout(function () {
+            bootstrap.Toast.getOrCreateInstance(el).hide();
+        }, 3000);
+    });
+});
+</script>
+@endpush
