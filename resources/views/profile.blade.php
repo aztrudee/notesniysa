@@ -5,17 +5,15 @@
 <nav id="sidebar" class="sidebar d-flex flex-column">
     <div>
         <div class="sidebar-brand">
-            <img src="{{ asset('ASSETS/frog.png') }}" style="width:32px; height:32px;" alt="Logo">
+            <img src="{{ asset('ASSETS/frog.png') }}" style="width:32px;height:32px;" alt="Logo">
             <span>Notes Manager</span>
         </div>
-
         <div class="mt-3">
             <a href="/dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
             <a href="/user"><i class="bi bi-person"></i> User</a>
             <a href="/notes"><i class="bi bi-journal-text"></i> My Notes</a>
         </div>
     </div>
-
     <div class="mt-auto mb-3">
         <a href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
     </div>
@@ -39,46 +37,29 @@
                 <div class="small text-muted">{{ $user->email }}</div>
             </div>
             <a href="/profile" class="d-flex align-items-center text-decoration-none">
-                @if(auth()->user()->profile_picture_base64)
-                    <img src="{{ auth()->user()->profile_picture_base64 }}" alt="Profile"
-                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                @else
-                    <img src="{{ asset('ASSETS/blank-pfp.png') }}" alt="Profile"
-                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                @endif
+                <img src="{{ auth()->user()->profile_picture_base64 ?? asset('ASSETS/blank-pfp.png') }}"
+                     alt="Profile" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
             </a>
         </div>
     </header>
 
-    <br>
-
     <main class="main-wrapper">
-
         <div class="container py-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-
                     <div class="card custom-modal border-0 p-4">
-
                         <h3 class="text-center fw-bold mb-4">Edit Profile</h3>
 
-                        <!-- PROFILE FORM -->
                         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="text-center mb-4">
-                                @if($user->profile_picture_base64)
-                                    <img src="{{ $user->profile_picture_base64 }}"
-                                         class="rounded-circle mb-3"
-                                         style="width:100px;height:100px;object-fit:cover;">
-                                @else
-                                    <img src="{{ asset('ASSETS/blank-pfp.png') }}"
-                                         class="rounded-circle mb-3"
-                                         style="width:100px;height:100px;object-fit:cover;">
-                                @endif
-
-                                <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
-                                    <input type="file" class="form-control custom-input w-100-mobile" name="profile_image" style="max-width:250px; width:100%;" accept="image/*">
+                                <img src="{{ $user->profile_picture_base64 ?? asset('ASSETS/blank-pfp.png') }}"
+                                     class="rounded-circle mb-3"
+                                     style="width:100px;height:100px;object-fit:cover;">
+                                <div class="d-flex justify-content-center">
+                                    <input type="file" class="form-control custom-input" name="profile_image"
+                                           style="max-width:250px;" accept="image/*">
                                 </div>
                                 <small class="text-muted">Upload a new profile image (optional)</small>
                             </div>
@@ -86,83 +67,56 @@
                             <hr>
 
                             <div class="row g-3">
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Full Name</label>
-                                    <input type="text"
-                                        class="form-control custom-input"
-                                        name="name"
-                                        value="{{ $user->name }}">
+                                    <input type="text" class="form-control custom-input" name="name" value="{{ $user->name }}">
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Email</label>
-                                    <input type="email"
-                                        class="form-control custom-input"
-                                        value="{{ $user->email }}" readonly>
+                                    <input type="email" class="form-control custom-input" value="{{ $user->email }}" readonly>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Gender</label>
                                     <select class="form-select custom-input" name="gender">
                                         <option value="Male" {{ $user->gender === 'Male' ? 'selected' : '' }}>Male</option>
                                         <option value="Female" {{ $user->gender === 'Female' ? 'selected' : '' }}>Female</option>
-                                    </select>  
+                                    </select>
                                 </div>
-
                             </div>
 
                             <hr class="my-4">
 
-                            <!-- PASSWORD -->
                             <h5 class="fw-bold mb-3">Change Password</h5>
 
                             <div class="row g-3">
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Current Password</label>
-                                    <input type="password"
-                                        class="form-control custom-input"
-                                        name="current_password">
+                                    <input type="password" class="form-control custom-input" name="current_password">
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">New Password</label>
-                                    <input type="password"
-                                        class="form-control custom-input"
-                                        name="new_password">
+                                    <input type="password" class="form-control custom-input" name="new_password">
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">Confirm New Password</label>
-                                    <input type="password"
-                                        class="form-control custom-input"
-                                        name="new_password_confirmation">
+                                    <input type="password" class="form-control custom-input" name="new_password_confirmation">
                                 </div>
                             </div>
 
                             <div class="text-end mt-4">
-                                <button type="submit"
-                                    class="btn btn-success rounded-pill px-4">
-                                    Save Changes
-                                </button>
+                                <button type="submit" class="btn btn-success rounded-pill px-4">Save Changes</button>
                             </div>
-
                         </form>
-
                     </div>
-
                 </div>
             </div>
         </div>
-
     </main>
 </div>
 
 @endsection
 
-<!-- TOASTS -->
-<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:90vw;">
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
     @if(session('success'))
     <div class="toast align-items-center border-0 show" role="alert"
          style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
@@ -186,57 +140,34 @@
 @push('styles')
 <style>
 .card {
-  background: #dff5e1 !important;
-  border-radius: 16px !important;
-  box-shadow: 10px 8px 0 #497151 !important;
+    background: #dff5e1 !important;
+    border-radius: 16px !important;
+    box-shadow: 10px 8px 0 #497151 !important;
 }
 .form-select.custom-input {
-  border-radius: 12px;
-  border: 1px solid #a9c7b1;
-  padding: 10px;
-  transition: 0.2s;
+    border-radius: 12px;
+    border: 1px solid #a9c7b1;
+    padding: 10px;
+    transition: 0.2s;
 }
 .form-select.custom-input:focus {
-  border-color: #497151;
-  box-shadow: 0 0 0 2px rgba(73,113,81,0.2);
+    border-color: #497151;
+    box-shadow: 0 0 0 2px rgba(73,113,81,0.2);
 }
 .btn-success {
-  background-color: #497151 !important;
-  border: none;
-  font-weight: 600;
+    background-color: #497151 !important;
+    border: none;
+    font-weight: 600;
 }
 .btn-success:hover { background-color: #76c787 !important; }
-
-/* RESPONSIVE FOR MOBILE */
-@media (max-width: 768px) {
-  .col-md-8 { max-width: 100%; flex: 0 0 100%; }
-  .col-md-6 { max-width: 100%; flex: 0 0 100%; }
-  .card { padding: 1.5rem !important; }
-  .card h3 { font-size: 1.5rem; }
-  .container { padding-left: 10px; padding-right: 10px; }
-  hr { margin: 1.5rem 0; }
-  .mb-4 { margin-bottom: 1.5rem !important; }
-}
-
-@media (max-width: 576px) {
-  .card { padding: 1rem !important; box-shadow: 5px 4px 0 #497151 !important; }
-  .card h3 { font-size: 1.25rem; }
-  .form-label { font-size: 0.9rem; }
-  .form-control, .form-select, .custom-input { font-size: 0.9rem; padding: 0.5rem; }
-  input[type="file"] { font-size: 0.85rem; }
-  .text-center { text-align: center; }
-  .text-end { text-align: center !important; }
-  .fw-semibold { font-weight: 600; }
-}
 </style>
 @endpush
 
 @push('scripts')
 <script>
 function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('show');
+    document.getElementById('sidebar').classList.toggle('show');
 }
-
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.toast.show').forEach(function (el) {
         setTimeout(function () {

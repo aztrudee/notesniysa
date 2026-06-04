@@ -37,13 +37,8 @@
                 <div class="small text-muted">{{ $user->email }}</div>
             </div>
             <a href="/profile" class="d-flex align-items-center text-decoration-none">
-                @if(auth()->user()->profile_picture_base64)
-                    <img src="{{ auth()->user()->profile_picture_base64 }}" alt="Profile"
-                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                @else
-                    <img src="{{ asset('ASSETS/blank-pfp.png') }}" alt="Profile"
-                         style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-                @endif
+                <img src="{{ auth()->user()->profile_picture_base64 ?? asset('ASSETS/blank-pfp.png') }}"
+                     alt="Profile" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
             </a>
         </div>
     </header>
@@ -142,7 +137,8 @@
         <div class="modal-body pt-0">
           <div class="mb-3"><label class="form-label fw-semibold">Full Name</label><input id="editName" type="text" class="form-control custom-input" name="name" required></div>
           <div class="mb-3"><label class="form-label fw-semibold">Email</label><input id="editEmail" type="email" class="form-control custom-input" name="email" required></div>
-          <div><label class="form-label fw-semibold">Gender</label>
+          <div>
+            <label class="form-label fw-semibold">Gender</label>
             <select id="editGender" class="form-control custom-input" name="gender" required>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -183,10 +179,9 @@
 
 @endsection
 
-<!-- TOAST CONTAINER -->
-<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:90vw;">
+<div style="position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
     @if(session('toast_success'))
-    <div id="toastMain" class="toast align-items-center border-0 show"
+    <div class="toast align-items-center border-0 show" role="alert"
          style="background:#d4edda;color:#276138;border-radius:10px;min-width:260px;">
         <div class="d-flex">
             <div class="toast-body fw-semibold">{{ session('toast_success') }}</div>
@@ -194,9 +189,8 @@
         </div>
     </div>
     @endif
-
     @if(session('toast_error'))
-    <div id="toastError" class="toast align-items-center border-0 show"
+    <div class="toast align-items-center border-0 show" role="alert"
          style="background:#ffe5e5;color:#c94b4b;border-radius:10px;min-width:260px;">
         <div class="d-flex">
             <div class="toast-body fw-semibold">{{ session('toast_error') }}</div>
@@ -237,7 +231,6 @@ function submitAddForm() {
     document.getElementById('addForm').submit();
 }
 
-// Auto-dismiss all visible toasts after 3 seconds
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.toast.show').forEach(function (el) {
         setTimeout(function () {
@@ -246,32 +239,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-@endpush
-
-@push('styles')
-<style>
-/* RESPONSIVE FOR USER PAGE */
-@media (max-width: 768px) {
-  .sticky-note { padding: 1.5rem; box-shadow: 7px 5px 0 #497151; }
-  .sticky-note h4 { font-size: 1.25rem; }
-  .d-flex.justify-content-between { flex-wrap: wrap; gap: 1rem; }
-  .btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
-  .table { font-size: 0.9rem; }
-  .table thead { background: #c8eccc; }
-  .table th, .table td { padding: 0.75rem 0.5rem; }
-  .table-responsive { border: 0; }
-}
-
-@media (max-width: 576px) {
-  .sticky-note { padding: 1rem; border-radius: 12px; box-shadow: 5px 4px 0 #497151; }
-  .sticky-note h4 { font-size: 1rem; }
-  .btn { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
-  .btn i { margin-right: 0.25rem; }
-  .table { font-size: 0.75rem; min-width: 650px; }
-  .table th, .table td { padding: 0.5rem 0.25rem; white-space: nowrap; }
-  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .d-flex.justify-content-between { display: flex !important; justify-content: space-between; flex-wrap: wrap; }
-  .text-center { text-align: center; }
-}
-</style>
 @endpush
